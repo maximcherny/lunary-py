@@ -5,7 +5,7 @@ DEFAULT_API_URL = "https://api.lunary.ai"
 
 class Config:
     _instance = None
-    _lock = threading.Lock()  
+    _lock = threading.Lock()
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
@@ -21,11 +21,11 @@ class Config:
                            os.environ.get("LUNARY_PRIVATE_KEY") or
                            os.environ.get("LUNARY_PUBLIC_KEY") or
                            os.getenv("LUNARY_APP_ID"))
-            self.verbose = verbose if verbose is not None else os.getenv('LUNARY_VERBOSE') is not None 
+            self.verbose = verbose if verbose is not None else os.getenv('LUNARY_VERBOSE') is not None
             self.api_url = api_url or os.getenv("LUNARY_API_URL") or DEFAULT_API_URL
             self.ssl_verify = not (disable_ssl_verify if disable_ssl_verify is not None else (True if os.environ.get("DISABLE_SSL_VERIFY") == "True" else False))
             self.initialized = True
-      
+
     def __repr__(self):
         return (f"Config(app_id={self.app_id!r}, verbose={self.verbose!r}, "
                 f"api_url={self.api_url!r}, ssl_verify={self.ssl_verify!r})")

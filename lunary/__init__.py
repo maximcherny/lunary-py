@@ -24,7 +24,7 @@ from .tags import tags_ctx, tags  # DO NOT REMOVE `tags` import
 from .parent import parent_ctx, parent, get_parent  # DO NOT REMOVE `parent` import
 from .project import project_ctx  # DO NOT REMOVE `project` import
 
-logging.basicConfig()
+# logging.basicConfig()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
@@ -895,8 +895,8 @@ try:
 
             except ImportError:
                 logger.warning(
-                    """To use the Lunary callback handler you need to 
-                    have the `lunary` Python package installed. Please install it 
+                    """To use the Lunary callback handler you need to
+                    have the `lunary` Python package installed. Please install it
                     with `pip install lunary`"""
                 )
                 self.__has_valid_config = False
@@ -916,7 +916,7 @@ try:
             self.__app_id = app_id or config.app_id
             if self.__app_id is None:
                 logger.warning(
-                    """app_id must be provided either as an argument or 
+                    """app_id must be provided either as an argument or
                     as an environment variable"""
                 )
                 self.__has_valid_config = False

@@ -42,10 +42,12 @@ class OpenAIUtils:
         tool_calls = OpenAIUtils.get_property(message, "tool_calls")
 
         if tool_calls is not None:
-            tool_calls_serialized = [
-                json.loads(tool_call.model_dump_json(indent=2, exclude_unset=True))
-                for tool_call in tool_calls
-            ]
+            tool_calls_serialized = []
+            for tool_call in tool_calls:
+                if isinstance(tool_call, dict):
+                    tool_calls_serialized.append(tool_call)
+                else:
+                    tool_calls_serialized.append(json.loads(tool_call.model_dump_json(indent=2, exclude_unset=True)))
             tool_calls = tool_calls_serialized
 
         parsed_message = {
