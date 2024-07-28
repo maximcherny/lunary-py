@@ -21,6 +21,7 @@ from .users import (
     identify,
 )  # DO NOT REMOVE `identify`` import
 from .tags import tags_ctx, tags  # DO NOT REMOVE `tags` import
+from .meta import meta_ctx, meta  # DO NOT REMOVE `meta` import
 from .parent import parent_ctx, parent, get_parent  # DO NOT REMOVE `parent` import
 from .project import project_ctx  # DO NOT REMOVE `project` import
 
@@ -387,7 +388,7 @@ def wrap(
                         or user_props
                         or user_props_ctx.get(),
                         params=params,
-                        metadata=metadata,
+                        metadata=metadata or meta_ctx.get(),
                         tags=kwargs.pop("tags", None) or tags or tags_ctx.get(),
                         template_id=kwargs.get("extra_headers", {}).get(
                             "Template-Id", None
